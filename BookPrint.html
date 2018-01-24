@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>BookPrint</title>
+</head>
+<script>
+//--------------------------------------
+//Author: Nodirbek sharipov
+//Copyright 2017 All rights reserved
+//--------------------------------------
+function gogogo() {
+		
+	
+	var from = inpfrom.value;
+    var till = inptill.value;
+
+	if( ((till-from+1) % 4 === 0) && (till > from)){ 
+		
+		var entire = [],
+		    final =[],
+		    front = [],
+		    back = [],
+		    papers = 0;
+
+		for(var i = till; i >= from; i--){ 
+			if(i % 2 == 0){ 
+				entire.push(i);
+			}
+		}  
+
+		for(var i = from; i <= till; i++){ 
+			if(i % 2 != 0){ 
+				entire.push(i);
+			} 
+		}
+
+		for(var i = 0; i<(entire.length/2); i++){
+			final.push(entire[i]);
+			final.push(entire[i + entire.length/2]);
+		}
+
+		
+		for(var i = 0; i<(final.length/2); i++){
+			front.push(final[i]);
+			back.push(final[i + final.length/2]);
+		}
+
+		document.getElementById('ppprr').innerHTML = "Paper required: "+(till-from+1)/4;
+		document.getElementById('resfr').innerHTML = front;
+		document.getElementById('resbc').innerHTML = back;
+		console.log("Required paper: "+(till-from+1)/4);
+		console.log("Front pages: "+front);
+		console.log("Back pages: "+back);
+	}else{ 
+		alert("Pages must be divideble by 4!"); 
+		console.log("Pages must be divideble by 4!"); 
+
+	}
+
+}
+</script>
+
+<style>
+	body{
+		background-color: rgba(0,0,0,0.5);
+	}
+
+	fieldset{
+		width: 500px;
+		border:1px solid #fff;
+		height: 200px;
+	}
+
+	legend{
+		color: #fff;
+		font-size: 24px;
+		font-family: gabriola;
+		font-weight: bold;
+		letter-spacing: 3px;
+		word-spacing: 6px;
+		padding-right: 30px;
+		padding-left: 30px;
+		border-radius: 70px;
+		border:1px solid #fff;
+	}
+
+	#inpfrom, #inptill{
+		width: 100px;
+		padding: 8px 15px;
+		margin: 20px;
+		font-family: verdana;
+		font-weight: bold;
+		color: rgba(0,0,255,0.7);
+		outline: none;
+		border-radius: 30px;
+		border:1px solid transparent;
+	}
+
+	label{
+		color: #fff;
+		font-weight: bold;
+		letter-spacing: 2px;
+	}
+
+	.pagesss{
+		width: 200px;
+		height: 30px;
+		float: left;
+		text-align: left;
+		padding-left: 30px;
+		color: #fff;
+		font-family: verdana;
+		font-size: 14px;
+	}
+
+	#gosbmt{
+		float: right;
+		margin-right: 50px;
+		width: 100px;
+		padding: 8px 15px;
+		font-family: verdana;
+		font-weight: bold;
+		color: #fff;
+		outline: none;
+		border-radius: 30px;
+		border:1px solid #fff;
+		background-color: rgba(0,0,255,1);
+		cursor: pointer;
+		transition: 0.4s ease;
+	}
+
+	#gosbmt:hover{
+		color: rgba(0,0,255,1);
+		border:1px solid rgba(0,0,255,1);
+		background-color: #fff;
+		transition: 0.4s ease;
+	}
+
+	textarea{
+		width: 460px;
+		height: 130px;
+		padding: 8px 15px;
+		overflow-y: auto;
+		font-size: 14px;
+		font-family: verdana;
+		border-radius: 10px;
+		line-height: 1.5;
+		outline: none;
+		border:1px solid transparent;
+	}
+
+	p{
+		font-family: gabriola;
+		font-size: 20px;
+		margin-top: -1px;
+		font-weight: bold;
+		color: rgba(255,255,255, 0.5);
+	}
+</style>
+
+<body>
+<center>
+	<fieldset>
+		<legend>Page numbers:</legend>
+
+		<label for="inpfrom">From:</label><input type="number" id="inpfrom" />
+		<label for="inptill">Till:</label><input type="number" id="inptill" />
+		<br><br><br>
+		<span class="pagesss" id="ppprr">Paper required: 0</span><button id="gosbmt" onclick="gogogo()">Go!</button>
+	</fieldset>
+	<br>
+
+	<fieldset>
+		<legend>Page Front:</legend>
+		<textarea readonly="" id="resfr"></textarea>
+	</fieldset>
+	<br>
+
+	<fieldset>
+		<legend>Page Back:</legend>
+		<textarea readonly="" id="resbc"></textarea>
+	</fieldset>
+
+	<p>Made by Nodirbek Sharipov 2017&copy;</p>
+</center>
+</body>
+</html>
